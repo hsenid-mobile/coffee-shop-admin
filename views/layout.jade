@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    title= 'StarBuzz Coffee . ' + title
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='icon', href='/images/favicon.ico')
+
+  -var menu = { 'Feedback': '/', 'Promotions': '/promotions', 'Payments': '/payments', 'Flavours' : '/flavours' };
+
+  body
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      div.navbar-logo
+        div.container-fluid
+            div.navbar-header
+
+    div.container-fluid
+      div.row
+        div.col-sm-3.col-md-2.sidebar
+          ul.nav.nav-sidebar
+            each val, index in menu
+              if(title == index)
+                li.active
+                  a(href=val)= index
+              else
+                li
+                  a(href=val)= index
+        div.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2
+          h5.page-header.text-align-left Admin Panel
+            span.glyphicon.glyphicon-menu-right.navigator-icon
+            span=title
+          block content
+
