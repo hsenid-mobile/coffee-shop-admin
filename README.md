@@ -10,6 +10,7 @@ Sample admin panel UI for a coffee shop using NodeJs
 * Enter following command
 
 ```
+npm install //To download dependencies, this is for first time build only
 node www
 ```
 
