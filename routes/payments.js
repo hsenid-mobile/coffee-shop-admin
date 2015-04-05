@@ -28,12 +28,24 @@ var  flow = {
         },
         handle : function(req, ctx) {
             ctx.view = "number"
+            ctx.attributes = {coffee : req.message}
         }
     },
 
     'number' : {
         message : function(req, ctx){
             return {message : "Number of cups"}
+        },
+        handle : function(req, ctx) {
+            ctx.attributes.number = req.message
+            ctx.view = 'confirm'
+        }
+    },
+    'confirm' : {
+        message : function(req, ctx){
+            var bill = parseFloat(flavors[ctx.attributes.coffee].price)  * parseFloat(ctx.attributes.number);
+            var confirmMsg = ctx.attributes.number + " cups of " + flavors[ctx.attributes.coffee].name + ", total = " + bill + "Rs" + "Confirm ?";
+            return {message : confirmMsg}
         },
         handle : function(req, ctx) {
             ctx.view = 'end'
