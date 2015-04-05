@@ -17,6 +17,7 @@
     "mocha" : "2.2.1",
     "chai" : "2.1.2",
     "yeast" : "0.0.0",
-    "geo-tools" : "0.1.2"
+    "geo-tools" : "0.1.2",
+    "tap-telco-api": "0.1.6"
   }
 }
