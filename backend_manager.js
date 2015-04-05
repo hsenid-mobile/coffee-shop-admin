@@ -1,5 +1,4 @@
-var repoService = function(){
-    var repo = require('./repo').repo();
+var repoService = function(repo){
 
     var saveToRepo = function(feedback, cb) {
         repo.save(feedback.key, feedback, cb)
@@ -30,7 +29,7 @@ var repoService = function(){
 };
 
 module.exports = {
-    feedbackRepo : repoService(),
-    promotionRepo : repoService(),
-    flavorsRepo : repoService()
+    feedbackRepo : repoService(require('./repo').repo()),
+    promotionRepo : repoService(require('./repo').repo()),
+    flavorsRepo : repoService(require('./repo').repo())
 };
