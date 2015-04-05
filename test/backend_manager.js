@@ -1,4 +1,4 @@
-var repoService = require('./../backend_manager').repoService();
+var repoService = require('./../backend_manager').feedbackRepo;
 var assert = require('chai').assert;
 
 describe("Save/Retrieve feedback should be successful", function() {

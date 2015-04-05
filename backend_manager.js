@@ -30,5 +30,6 @@ var repoService = function(){
 };
 
 module.exports = {
-    repoService : repoService
+    feedbackRepo : repoService(),
+    promotionRepo : repoService()
 };
