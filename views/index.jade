@@ -2,73 +2,16 @@ extends layout
 
 block content
   table.table.table-striped.table-hover.table-bordered
-    tr
-      th #
-      th Mobile number
-      th.message-col Message
-      th Date
-    tr
-      td 1
-      td 94728123893
-      td latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024 latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024
-      td 2015.10.1:12:1:12
-    tr
-      td 2
-      td 94728123893
-      td latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024 latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024
-      td 2015.10.1:12:1:12
-    tr
-      td 3
-      td 94728123893
-      td latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024 latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024
-      td 2015.10.1:12:1:12
-    tr
-      td 4
-      td 94728123893
-      td latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024 latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024
-      td 2015.10.1:12:1:12
-    tr
-      td 5
-      td 94728123893
-      td latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024 latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024
-      td 2015.10.1:12:1:12
-    tr
-      td 6
-      td 94728123893
-      td latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024 latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024
-      td 2015.10.1:12:1:12
-    //tr
-    //  td 7
-    //  td 94728123893
-    //  td latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024 latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024
-    //  td 2015.10.1:12:1:12
-    //tr
-    //  td 8
-    //  td 94728123893
-    //  td latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024 latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024
-    //  td 2015.10.1:12:1:12
-    //tr
-    //  td 9
-    //  td 94728123893
-    //  td latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024 latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024
-    //  td 2015.10.1:12:1:12
-    //tr
-    //  td 10
-    //  td 94728123893
-    //  td latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024 latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024
-    //  td 2015.10.1:12:1:12
-    //tr
-    //  td 11
-    //  td 94728123893
-    //  td latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024 latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024
-    //  td 2015.10.1:12:1:12
-    //tr
-    //  td 12
-    //  td 94728123893
-    //  td latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024 latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024
-    //  td 2015.10.1:12:1:12
-    //tr
-    //  td 13
-    //  td 94728123893
-    //  td latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024 latte-clipart-royalty-free-coffee-cups-collage-logo-by-seamartini-graphics-4024
-    //  td 2015.10.1:12:1:12
+    thread
+      tr
+        th #
+        th Mobile number
+        th.message-col Message
+        th Date
+    tbody
+      each feed, i in feedback
+        tr
+          td #{i + 1}
+          td #{feed.mobileNo}
+          td.message-col #{feed.message}
+          td 8292828
