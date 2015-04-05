@@ -44,10 +44,26 @@ var  flow = {
     'confirm' : {
         message : function(req, ctx){
             var bill = parseFloat(flavors[ctx.attributes.coffee].price)  * parseFloat(ctx.attributes.number);
+            ctx.attributes.bill = bill
             var confirmMsg = ctx.attributes.number + " cups of " + flavors[ctx.attributes.coffee].name + ", total = " + bill + "Rs" + "Confirm ?";
             return {message : confirmMsg}
         },
         handle : function(req, ctx) {
+            var trxId = yeast();
+
+            var casRequest = {
+                applicationId: "APP_000101",
+                password: "password",
+                externalTrxId: trxId,
+                subscriberId: ctx.mobileNo,
+                amount: ctx.attributes.bill.toString()
+            };
+            transport.createRequest({hostname: '127.0.0.1', port: 7000, path: '/caas/direct/debit'}, casRequest, function(request){
+                transport.httpClient(request, function(){
+                    paymentsManager.saveToRepo({key : trxId, mobileNo: ctx.mobileNo,amount : ctx.attributes.bill, priority : "1", date : new Date()});
+                })
+            });
+
             ctx.view = 'end'
         }
     },
