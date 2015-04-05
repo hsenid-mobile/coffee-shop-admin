@@ -19,11 +19,23 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.post('/sms', function(req, res, next){
-  res.send(tapApi.sms.successResponse);
-  next()
-}, function(req, res){
-    feedbackManager.saveToRepo({key: yeast(), message:req.body.message, mobileNo:req.body.sourceAddress, date:new Date()})
-});
+router.post('/sms',
+    function(req, res, next) {
+        res.send(tapApi.sms.successResponse);
+        next()
+    },
+    function(req, res, next){
+        feedbackManager.saveToRepo({key: yeast(), message:req.body.message, mobileNo:req.body.sourceAddress, date:new Date()})
+        next()
+    },
+    function(req, res){
+    tapApi.sms.requestCreator({applicationId : "APP_000101", password : "password"}).single(req.body.sourceAddress, "Thanks for your feedback.", function(mtReq){
+      tapApi.transport.createRequest({hostname: '127.0.0.1', port: 7000, path: '/sms/send'}, mtReq, function(request){
+        tapApi.transport.httpClient(request, function() {
+            console.log("Mt request send to subscriber" + mtReq)
+        })
+      })
+    })}
+);
 
 module.exports = router;
