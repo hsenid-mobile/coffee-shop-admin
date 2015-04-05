@@ -1,7 +1,7 @@
 var repo = require('./repo').repo();
 
 var saveToRepo = function(feedback, cb) {
-    repo.save(feedback.mobileNo, feedback, cb)
+    repo.save(feedback.key, feedback, cb)
 };
 
 
@@ -14,7 +14,6 @@ var getAll = function(success) {
         success(result);
     });
 };
-
 
 var del = function(key, success) {
     repo.del(key, success);

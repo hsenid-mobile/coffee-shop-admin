@@ -3,7 +3,7 @@ var assert = require('chai').assert;
 
 describe("Save/Retrieve feedback should be successful", function() {
     it("Saving feedback.", function () {
-        backendManager.saveToRepo({mobileNo : "tel:890982", msg : "Very good mocha"}, function(err, success) {
+        backendManager.saveToRepo({key : "1", mobileNo : "tel:890982", msg : "Very good mocha"}, function(err, success) {
             if(!err && success) {
                 assert.ok(true, "Success")
             }else {
@@ -12,7 +12,7 @@ describe("Save/Retrieve feedback should be successful", function() {
         })
     })
     it("Retrieving feedback should be successful.", function () {
-        backendManager.getSingle("tel:890982", function() {
+        backendManager.getSingle("1", function() {
                 assert.ok(true, "Success")
         }, function(){
             assert.ok(false, "Failure")
@@ -20,11 +20,11 @@ describe("Save/Retrieve feedback should be successful", function() {
     })
     it("Retrieving all feedback should be successful.", function () {
         backendManager.getAll(function(feedback) {
-            assert.equal(feedback["tel:890982"].mobileNo, "tel:890982");
+            assert.equal(feedback["1"].mobileNo, "tel:890982");
         })
     })
     it("Delete by key", function () {
-        backendManager.deleteByKey("tel:890982", function(count) {
+        backendManager.deleteByKey("1", function(count) {
             assert.equal(count, 1);
         });
     })
