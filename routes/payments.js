@@ -14,7 +14,7 @@ paymentsManager.saveToRepo({key : yeast(), mobileNo: "tel:878716212",amount : "1
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     paymentsManager.getAll(function(result){
-        res.render('payments', { title: 'Payments', payments : result});
+        res.render('payments', { title: 'Payments', payments : result, index : 1});
     });
 });
 

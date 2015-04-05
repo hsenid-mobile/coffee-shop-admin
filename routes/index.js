@@ -1,3 +1,7 @@
+'use strict';
+
+var yeast = require('yeast');
+
 var express = require('express');
 var router = express.Router();
 
@@ -10,7 +14,7 @@ feedbackManager.saveToRepo({key : "3", message : "Very good espresso", mobileNo:
 /* GET home page. */
 router.get('/', function(req, res, next) {
   feedbackManager.getAll(function(result){
-    res.render('index', { title: 'Feedback', feedback : result})
+    res.render('index', { title: 'Feedback', feedback : result, record_no : 1})
   })
 });
 

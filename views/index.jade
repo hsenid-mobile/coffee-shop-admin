@@ -11,7 +11,7 @@ block content
     tbody
       each feed, i in feedback
         tr
-          td #{i}
+          td #{record_no++}
           td #{feed.mobileNo}
           td.message-col #{feed.message}
           td #{feed.date}
