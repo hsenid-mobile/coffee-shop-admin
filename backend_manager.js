@@ -1,29 +1,28 @@
 var repo = require('./repo').repo();
 
-var saveFeedBack = function(feedback, cb) {
+var saveToRepo = function(feedback, cb) {
     repo.save(feedback.mobileNo, feedback, cb)
 };
 
 
-var getFeedBack = function(key, success, error) {
+var getSingle = function(key, success, error) {
     repo.get(key, success, error);
 };
 
 var getAll = function(success) {
     repo.all(function(result){
-        var feedback = {};
-        for (var feed in result) {
-            if(feed.indexOf("tel:") === 0) {
-                feedback[feed] = result[feed];
-            }
-        }
-        console.log(feedback)
-        success(feedback);
+        success(result);
     });
 };
 
+
+var del = function(key, success) {
+    repo.del(key, success);
+};
+
 module.exports = {
-    saveFeedBack : saveFeedBack,
-    getFeedBack : getFeedBack,
-    getAll : getAll
+    saveToRepo : saveToRepo,
+    getSingle : getSingle,
+    getAll : getAll,
+    deleteByKey : del
 };

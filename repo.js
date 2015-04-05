@@ -29,8 +29,12 @@ var repo = function(){
                 }
             });
         },
-        del : function(key) {
-            nodeCache.del(key, function(err, count){})
+        del : function(key, success) {
+            nodeCache.del(key, function(err, count){
+                if(!err) {
+                    success(count);
+                }
+            })
         }
 
     }
