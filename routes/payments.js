@@ -16,6 +16,8 @@ paymentsManager.saveToRepo({key : yeast(), mobileNo: "tel:878716233",amount : "1
 paymentsManager.saveToRepo({key : yeast(), mobileNo: "tel:878716244",amount : "10", priority : "1", date : new Date()});
 paymentsManager.saveToRepo({key : yeast(), mobileNo: "tel:878716212",amount : "10", priority : "1", date : new Date()});
 
+var priorityManager = require("./../priority_manager")
+
 var welcomeMsg = "Welcome to starbuzz coffe shop\n";
 for(var coffee in flavors){
     welcomeMsg = welcomeMsg + coffee + ". " + flavors[coffee].name + " - price " + flavors[coffee].price + "\n"
@@ -59,8 +61,27 @@ var  flow = {
                 amount: ctx.attributes.bill.toString()
             };
             transport.createRequest({hostname: '127.0.0.1', port: 7000, path: '/caas/direct/debit'}, casRequest, function(request){
-                transport.httpClient(request, function(){
-                    paymentsManager.saveToRepo({key : trxId, mobileNo: ctx.mobileNo,amount : ctx.attributes.bill, priority : "1", date : new Date()});
+                transport.httpClient(request, function(response){
+
+                    if(response.statusCode === "S1000") {
+
+                        var lbsRequest = {
+                            applicationId: "APP_001764",
+                            password: "password",
+                            subscriberId: ctx.mobileNo,
+                            serviceType: "IMMEDIATE"
+                        };
+
+                        transport.createRequest({hostname: '127.0.0.1', port: 7000, path: '/lbs/locate'}, casRequest, function(request){
+                            transport.httpClient(request, function(response){
+                                var priority = priorityManager.calculate({lat : 7, lng : 81}, {lat : response.latitude , lng : response.longitude}, function(distance, priority) {
+                                    paymentsManager.saveToRepo({key : trxId, mobileNo: ctx.mobileNo,amount : ctx.attributes.bill, priority : priority + "(" + "distance = " + distance + "kms" + ")", date : new Date()})
+                                })
+
+                            })
+                        });
+
+                    }
                 })
             });
 
