@@ -4,7 +4,8 @@ block content
   table.table.table-striped.table-hover.table-bordered
     thread
       tr
-        th #Ref ID
+        th #
+        th Ref ID
         th Mobile number
         th.message-col Message
         th Date
@@ -12,6 +13,7 @@ block content
       each feed, i in feedback
         tr
           td #{record_no++}
+          td #{i}
           td #{feed.mobileNo}
           td.message-col #{feed.message}
           td #{feed.date}
