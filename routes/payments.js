@@ -64,7 +64,7 @@ var sessions = ussd.sessions(flow, { stdTTL: 100, checkperiod: 120 }, {applicati
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     paymentsManager.getAll(function(result){
-        res.send('payments', { title: 'Payments', payments : result, index : 1});
+        res.render('payments', { title: 'Payments', payments : result, index : 1});
     });
 });
 
