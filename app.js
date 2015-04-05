@@ -5,12 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var promotions = require('./routes/promotions');
-var payments = require('./routes/payments');
-var flavours = require('./routes/flavours');
-
-
 /*init data*/
 var flavorsRepo = require('./backend_manager').flavorsRepo
 
@@ -21,6 +15,11 @@ flavorsRepo.saveToRepo({key : "4", name : "Caffe Latte", price : "415Rs"});
 flavorsRepo.saveToRepo({key : "5", name : "Caf au Lait", price : "395Rs"});
 flavorsRepo.saveToRepo({key : "6", name : "Mochachino", price : "520Rs"});
 flavorsRepo.saveToRepo({key : "7", name : "Caramel Macchiato", price : "495Rs"});
+
+var routes = require('./routes/index');
+var promotions = require('./routes/promotions');
+var payments = require('./routes/payments');
+var flavours = require('./routes/flavours');
 
 var app = express();
 
