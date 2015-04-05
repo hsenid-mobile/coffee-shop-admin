@@ -2,32 +2,18 @@ extends layout
 
 block content
     table.table.table-striped.table-hover.table-bordered
-        tr
-            th #
-            th Mobile number
-            th Amount
-            th Transaction ID
-            th Priority
-            th Date
-        tr
-            td 1
-            td 94728123893
-            td 500.00
-            td 54992388231323
-            td 1
-            td 2015.10.1:12:1:12
-        tr
-            td 2
-            td 94728123893
-            td 500.00
-            td 54992388231323
-            td 1
-            td 2015.10.1:12:1:12
-        tr
-            td 3
-            td 94728123893
-            td 500.00
-            td 54992388231323
-            td 1
-            td 2015.10.1:12:1:12
-
+        thead
+            tr
+                th #Ref ID
+                th Mobile number
+                th Amount
+                th Priority
+                th Date
+        tbody
+            each payment, i in payments
+                tr
+                    td #{i}
+                    td #{payment.mobileNo}
+                    td #{payment.amount}
+                    td #{payment.priority}
+                    td #{payment.date}
