@@ -1,13 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-var flavorsRepo = require('./../backend_manager').flavorsRepo
+var flavours = require('./../flavor_repo').flavors
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    flavorsRepo.getAll(function(result){
-        res.render('flavours', { title: 'Flavours', flavors : result });
-    });
+    res.render('flavours', { title: 'Flavours', flavors : flavours });
 });
 
 module.exports = router;

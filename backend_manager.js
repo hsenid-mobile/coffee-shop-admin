@@ -30,6 +30,5 @@ var repoService = function(repo){
 
 module.exports = {
     feedbackRepo : repoService(require('./repo').repo()),
-    promotionRepo : repoService(require('./repo').repo()),
-    flavorsRepo : repoService(require('./repo').repo())
+    promotionRepo : repoService(require('./repo').repo())
 };
